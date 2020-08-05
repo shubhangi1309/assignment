@@ -9,12 +9,12 @@ class ShowTimeModal extends Component {
 
     componentWillReceiveProps(nextProps){
         const {users} = nextProps;
-        const date = new Date;
+        const date = new Date();
         const month = ((date.getMonth() + 1) <= 9) ? "0"+ (date.getMonth() + 1) : (date.getMonth() + 1);
         const dt = (date.getDate() <= 9) ? "0"+ date.getDate() : date.getDate();;
         const year = date.getFullYear();
         const fullDate = (year+"-"+month+"-"+dt);
-        return (users !== undefined) ? users.activivty_periods.map((x) => {
+        return (users !== undefined) ? users.activivty_periods.forEach((x) => {
             if(fullDate.toString() === x.start_time.split(",")[0]){
                 this.setState({
                     timePeriod: x.start_time + "\n to \n" +x.end_time
@@ -36,7 +36,7 @@ class ShowTimeModal extends Component {
     getDuration = (e) => {
         const {users} = this.props;
         const date = e.target.value;
-        return (users !== undefined) ? users.activivty_periods.map((x) => {
+        return (users !== undefined) ? users.activivty_periods.forEach((x) => {
             if(date.toString() === x.start_time.split(",")[0]){
                 this.setState({
                     timePeriod: x.start_time + "\n to \n" +x.end_time
